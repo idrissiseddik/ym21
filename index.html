@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Youssef Mehri - Joueur Marocain</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding-top: 100px; /* Espacement réduit pour le header compact */
+    }
+
+    header, footer {
+      background-color: #111;
+      width: 100%;
+      left: 0;
+      z-index: 1000;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      padding: 8px 20px; /* Padding réduit */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100px; /* Header plus compact */
+    }
+
+    .header-top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 22px; /* Taille réduite */
+      font-weight: bold;
+      order: 2;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+    }
+
+    .menu-toggle {
+      font-size: 24px; /* Taille réduite */
+      cursor: pointer;
+      display: none;
+      color: #fff;
+      transition: transform 0.3s ease;
+      order: 1;
+    }
+
+    .menu-toggle.rotate {
+      transform: rotate(180deg);
+    }
+
+    nav {
+      order: 1;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 15px; /* Espacement réduit */
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem; /* Taille réduite */
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #f39c12;
+    }
+
+    @media(max-width:768px){
+      .menu-toggle { 
+        display: block; 
+      }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: #111;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 15px; /* Padding réduit */
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      }
+      nav ul.active { display: flex; }
+    }
+
+    /* Message de bienvenue dans le header */
+    .welcome-message {
+      width: 100%;
+      background-color: #000;
+      color: #f39c12;
+      padding: 5px 0; /* Padding réduit */
+      overflow: hidden;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 5px; /* Marge réduite */
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+      font-size: 0.85rem; /* Taille réduite */
+    }
+
+    .welcome-text {
+      white-space: nowrap;
+      animation: scrollText 20s linear infinite;
+      display: inline-block;
+      padding-left: 100%;
+    }
+
+    @keyframes scrollText {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    main {
+      padding-top: 0;
+      padding-bottom: 80px;
+    }
+
+    section {
+      margin-bottom: 30px; /* Espacement réduit */
+      display: none;
+      padding-top: 20px; /* Espacement réduit */
+    }
+
+    section.active {
+      display: block;
+    }
+
+    /* Style pour les titres de section */
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      text-decoration: underline;
+      text-decoration-color: #f39c12;
+      text-underline-offset: 8px;
+      margin-bottom: 25px; /* Marge réduit */
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding-top: 10px; /* Padding réduit */
+    }
+
+    /* Style pour les textes justifiés */
+    .justified-text {
+      text-align: justify;
+      line-height: 1.7;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .accordion-button {
+      background: #111;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .accordion-button:not(.collapsed) {
+      background: #222;
+      color: #0f0;
+    }
+
+    .accordion-body {
+      background: #000;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-shadow: 2px 2px 8px #000;
+      min-height: 100vh;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 0;
+      margin-top: -100px; /* Ajusté pour le header compact */
+    }
+
+    .hero-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      /* Animation de chute */
+      transform: translateY(-100%);
+      animation: fallDown 1.5s ease-out forwards;
+      animation-delay: 0.3s;
+    }
+
+    @keyframes fallDown {
+      0% {
+        transform: translateY(-100%);
+      }
+      60% {
+        transform: translateY(10%);
+      }
+      80% {
+        transform: translateY(-5%);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+      z-index: -1;
+    }
+
+    .hero-content {
+      z-index: 2;
+      margin-top: auto;
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1.5s ease forwards;
+      animation-delay: 1s;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-footer {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 12px;
+      margin: 0 auto;
+      width: fit-content;
+      border-radius: 5px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 1.8s;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .hero h1 { 
+      font-size: 3.5rem; 
+      font-weight: 800; 
+      margin-bottom: 10px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .hero .jersey { 
+      font-size: 2.8rem; 
+      font-weight: bold; 
+      margin: 10px 0; 
+      color: #f39c12; 
+    }
+    
+    .hero p { 
+      font-size: 1.4rem; 
+      margin-bottom: 5px;
+    }
+
+    /* Style pour le carrousel */
+    .carousel-item {
+      height: 380px;
+      overflow: hidden;
+    }
+    
+    .carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Style pour le carrousel des actualités */
+    .news-carousel {
+      margin-bottom: 30px;
+    }
+    
+    .news-carousel .carousel-item {
+      height: auto;
+      min-height: 500px;
+    }
+    
+    .news-content {
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      text-align: center;
+    }
+    
+    .news-title {
+      font-size: 1.8rem;
+      color: #f39c12;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    
+    .news-text {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      color: #bbb;
+      background-color: #111;
+      width: 100%;
+    }
+
+    footer a {
+      color: #f39c12;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+    footer a:hover { color: #fff; }
+
+    /* Style pour la section Carrière */
+    .career-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .career-list li {
+      background-color: #1a1a1a;
+      margin-bottom: 18px;
+      padding: 18px;
+      border-left: 4px solid #f39c12;
+      border-radius: 0 5px 5px 0;
+    }
+
+    /* Style pour le formulaire de contact */
+    .form-label {
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: #f39c12;
+    }
+
+    .btn-success {
+      background-color: #25D366;
+      border-color: #25D366;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+
+    .btn-success:hover {
+      background-color: #128C7E;
+      border-color: #128C7E;
+    }
+
+    /* Style pour la section Sponsors */
+    .sponsors-container {
+      text-align: center;
+      padding: 40px 20px;
+      background: #1a1a1a;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+    
+    .construction-icon {
+      font-size: 4rem;
+      color: #f39c12;
+      margin-bottom: 20px;
+    }
+    
+    .construction-text {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    /* Style pour les icônes de réseaux sociaux */
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+
+    .social-icon {
+      font-size: 2.2rem;
+      color: #f39c12;
+      transition: all 0.3s ease;
+    }
+
+    .social-icon:hover {
+      color: #fff;
+      transform: translateY(-5px);
+    }
+
+    .social-icon.instagram:hover {
+      color: #e4405f;
+    }
+
+    .social-icon.facebook:hover {
+      color: #3b5999;
+    }
+
+    .social-icon.twitter:hover {
+      color: #1da1f2;
+    }
+
+    .social-icon.youtube:hover {
+      color: #cd201f;
+    }
+
+    /* Style pour l'alerte de construction */
+    .construction-alert {
+      position: fixed;
+      bottom: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1050;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    /* Animations variées */
+    .animate-fadeIn {
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+    }
+    
+    .animate-slideInLeft {
+      opacity: 0;
+      transform: translateX(-50px);
+      animation: slideInLeft 0.8s ease forwards;
+    }
+    
+    .animate-slideInRight {
+      opacity: 0;
+      transform: translateX(50px);
+      animation: slideInRight 0.8s ease forwards;
+    }
+    
+    .animate-slideInUp {
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideInUp 0.8s ease forwards;
+    }
+    
+    .animate-zoomIn {
+      opacity: 0;
+      transform: scale(0.9);
+      animation: zoomIn 0.8s ease forwards;
+    }
+    
+    .animate-rotateIn {
+      opacity: 0;
+      transform: rotate(-10deg) scale(0.9);
+      animation: rotateIn 0.8s ease forwards;
+    }
+    
+    .animate-flipInX {
+      opacity: 0;
+      transform: perspective(400px) rotateX(90deg);
+      animation: flipInX 0.8s ease forwards;
+    }
+    
+    .animate-bounceIn {
+      opacity: 0;
+      animation: bounceIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+    
+    @keyframes slideInLeft {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes slideInRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes zoomIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes rotateIn {
+      to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+      }
+    }
+    
+    @keyframes flipInX {
+      to {
+        opacity: 1;
+        transform: perspective(400px) rotateX(0);
+      }
+    }
+    
+    @keyframes bounceIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      70% {
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Délais d'animation pour les éléments enfants */
+    .animate-delay-1 {
+      animation-delay: 0.1s;
+    }
+    
+    .animate-delay-2 {
+      animation-delay: 0.2s;
+    }
+    
+    .animate-delay-3 {
+      animation-delay: 0.3s;
+    }
+    
+    .animate-delay-4 {
+      animation-delay: 0.4s;
+    }
+    
+    .animate-delay-5 {
+      animation-delay: 0.5s;
+    }
+
+    /* Media Queries pour l'adaptation responsive */
+    @media (max-width: 992px) {
+      body {
+        padding-top: 90px;
+      }
+      
+      header {
+        height: 90px;
+        padding: 6px 15px;
+      }
+      
+      .hero {
+        margin-top: -90px;
+      }
+      
+      .hero h1 {
+        font-size: 3.2rem;
+      }
+      
+      .hero .jersey {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.3rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .news-carousel .carousel-item {
+        min-height: 450px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-top: 85px;
+      }
+      
+      header {
+        height: 85px;
+        padding: 5px 12px;
+      }
+      
+      .hero {
+        margin-top: -85px;
+      }
+      
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+      
+      .hero .jersey {
+        font-size: 2.2rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+        padding-top: 15px;
+      }
+      
+      .welcome-message {
+        font-size: 0.8rem;
+      }
+      
+      section {
+        padding-top: 25px;
+      }
+      
+      .carousel-item {
+        height: 300px;
+      }
+      
+      .news-carousel .carousel-item {
+        min-height: 550px;
+      }
+      
+      .news-title {
+        font-size: 1.5rem;
+      }
+      
+      .news-text {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      body {
+        padding-top: 80px;
+      }
+      
+      header {
+        height: 80px;
+        padding: 4px 10px;
+      }
+      
+      header h1 {
+        font-size: 18px;
+      }
+      
+      .menu-toggle {
+        font-size: 20px;
+      }
+      
+      .hero {
+        margin-top: -80px;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero .jersey {
+        font-size: 1.8rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .hero-footer {
+        width: 90%;
+        padding: 10px;
+        font-size: 0.9rem;
+      }
+      
+      .section-title {
+        font-size: 1.6rem;
+        padding-top: 10px;
+      }
+      
+      .welcome-message {
+        font-size: 0.75rem;
+        padding: 4px 0;
+      }
+      
+      section {
+        padding-top: 20px;
+      }
+      
+      .carousel-item {
+        height: 250px;
+      }
+      
+      .news-carousel .carousel-item {
+        min-height: 600px;
+      }
+      
+      .news-content {
+        padding: 15px;
+      }
+      
+      .news-title {
+        font-size: 1.3rem;
+      }
+    }
+
+    /* Espacement supplémentaire pour la section vidéos */
+    #videos {
+      padding-bottom: 80px; /* Augmentation de l'espace en bas de la section vidéos */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header compact -->
+  <header>
+    <div class="header-top">
+      <i class="fas fa-bars menu-toggle"></i>
+      <nav>
+        <ul>
+          <li><a data-section="hero">Accueil</a></li>
+          <li><a data-section="biographie">Biographie</a></li>
+          <li><a data-section="carriere">Carrière</a></li>
+          <li><a data-section="actualites">Actualités</a></li>
+          <li><a data-section="photos">Photos</a></li>
+          <li><a data-section="videos">Vidéos</a></li>
+          <li><a data-section="sponsors">Sponsors</a></li>
+          <li><a data-section="contact">Contact</a></li>
+        </ul>
+      </nav>
+      <h1>Youssef Mehri</h1>
+    </div>
+    
+    <!-- Message de bienvenue compact -->
+    <div class="welcome-message">
+      <div class="welcome-text">
+        Bienvenue sur le site non officiel du joueur Marocain Youssef Mehri
+      </div>
+    </div>
+  </header>
+
+  <main class="container-fluid p-0">
+    <!-- Hero -->
+    <section class="hero active" id="hero">
+      <img src="images/mehri.jpg" alt="Youssef Mehri" class="hero-image">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Youssef Mehri</h1>
+        <div class="jersey">Youssef Mehri</div>
+        <p></p>
+      </div>
+      <div class="hero-footer">
+        <p class="m-0">Prénom : Youssef  |  Nom : Mehri  |  Maillot : 21  |  Poste : Attaquant  |  Club Formateur : KACM  |  Club Actuel : RSB  |  Joueur professionnel |  Equipe du Maroc des joueurs locaux</p>
+      </div>
+    </section>
+
+    <!-- Biographie -->
+    <section id="biographie" class="container py-4">
+      <h2 class="section-title">Biographie</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <p class="justified-text">
+            Youssef Mehri est un footballeur marocain né le 7 septembre 1999 à Marrakech, qui évolue comme attaquant (souvent sur l’aile gauche) et joue actuellement pour la Renaissance Sportive de Berkane (RS Berkane).
+          </p>
+
+          <p class="justified-text">
+            Il débute sa carrière professionnelle en 2019 avec le KAC Marrakech, club de sa ville natale.
+          </p>
+
+          <p class="justified-text">
+            En janvier 2022, he signed a two-season contract with Hassania Union Sport Agadir (HUSA), for an estimated amount of around 67,000 euros.
+          </p>
+
+          <p class="justified-text">
+            Il y joue plusieurs matchs en Botola Pro, marque ses premiers buts dans le championnat marocain — dont un contre le Wydad AC et un autre face au Raja de Casablanca. 
+          </p>
+
+          <p class="justified-text">
+            En juillet 2023, Mehri rejoint la RS Berkane.
+          </p>
+
+          <p class="justified-text">
+            Dès son arrivée, il s’impose progressivement au sein de l’équipe. On lui attribue le numéro 21 au club.
+          </p>
+
+          <p class="justified-text">
+Parmi ses faits marquants récents : le 20 avril 2025, lors des demi-finales aller de la Coupe de la CAF contre le CS Constantine, Mehri marque au bout de seulement 13 secondes de jeu, établissant le record du but le plus rapide de l’histoire de la Coupe de la Confédération africaine de football. 
+Ce but est souvent retenu comme un moment décisiv, car il lui permet de s’inscrire dans les annales de la compétition.
+          </p>
+
+          <p class="justified-text">
+            En ce qui concerne ses caractéristiques physiques : il mesure environ 1,77 m, est droitier, et son style de jeu combine la vitesse, l’aptitude à prendre l’espace, les appels vers l’avant, et une capacité à marquer et à créer des occasions.
+          </p>
+
+          <p class="justified-text">
+            Sur le plan international, Mehri a été convoqué pour des préparations de la sélection marocaine 'A' dans le cadre du CHAN (Championnat d’Afrique des Nations) en 2024-2025.
+          </p>
+
+          <p class="justified-text">
+            Jusqu’à maintenant, il continue de consolider sa réputation dans le championnat marocain, notamment en Botola Pro et en compétitions africaines, avec des performances régulières en termes de matchs joués, de buts, et de contributions offensives.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Carrière -->
+    <section id="carriere" class="container py-4">
+      <h2 class="section-title">Carrière</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <p class="justified-text">
+            Le parcours footballistique de Youssef Mehri est marqué par sa loyauté envers son club formateur et ses performances remarquables sur le terrain. Voici les étapes clés de sa carrière :
+          </p>
+          <ul class="career-list">
+            <li><strong>2019 – 2021 : Débuts au KAC Marrakech</strong><br>
+Issu de sa ville natale, Mehri fait ses premiers pas professionnels avec le Kawkab Athlétique Club de Marrakech (KACM). Dans un club historique alors en Botola Pro D2, il apprend le haut niveau, accumule du temps de jeu et se forge un style offensif énergique. (KACM)</li>
+
+            <li><strong>2022 – 2023 : Éclosion au Hassania Union Sport Agadir (HUSA)</strong><br>
+En janvier 2022, il rejoint le HUSA avec un contrat de deux saisons. Cette étape marque un tournant dans sa carrière puisqu’il découvre la Botola Pro D1. Mehri se fait remarquer en inscrivant ses premiers buts dans l’élite, notamment face à deux géants du football marocain, le Wydad AC et le Raja de Casablanca, confirmant ainsi son potentiel.</li>
+
+            <li><strong>2023 – Aujourd’hui : Confirmation à la RS Berkane</strong><br>
+À l’été 2023, Youssef Mehri signe avec la Renaissance Sportive de Berkane (RSB), un club réputé pour ses performances continentales. Progressivement, il s’impose comme un élément important de l’attaque orange. Le 20 avril 2025, il entre dans l’histoire en marquant après seulement 13 secondes contre le CS Constantine en Coupe de la CAF, devenant l’auteur du but le plus rapide de l’histoire de la compétition. Cet exploit retentissant assoit sa notoriété sur la scène africaine.</li>
+
+            <li><strong>Sélection nationale :</strong> 
+Ses performances en club lui valent plusieurs convocations avec la sélection marocaine A’ dans le cadre du CHAN. Bien qu’il n’ait pas encore intégré durablement l’équipe première, son évolution laisse présager une future place chez les Lions de l’Atlas.</li>
+
+          </ul>
+          <p class="justified-text">
+            Au niveau international, Youssef Mehri a honoré sa première sélection avec l'équipe du Maroc en 2025. Son plus grand fait d'armes international reste sa participation à la Coupe d'Afrique des Nations CHAN 2025 où le Maroc etait sacré champion.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Actualités (sans animation) -->
+    <section id="actualites" class="container-fluid p-0 py-4">
+      <h2 class="section-title">Actualités</h2>
+      
+      <div id="carouselActualites" class="carousel slide news-carousel" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselActualites" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#carouselActualites" data-bs-slide-to="1"></button>
+          <button type="button" data-bs-target="#carouselActualites" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="images/actualites/actu1.jpg" class="d-block w-100" alt="Actualité 1">
+            <div class="carousel-caption d-block news-content">
+              <h3 class="news-title">Record historique en Coupe de la CAF</h3>
+              <p class="news-text">Youssef Mehri entre dans l'histoire du football africain en marquant le but le plus rapide de la Coupe de la CAF après seulement 13 secondes de jeu contre le CS Constantine en demi-finale.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="images/actualites/actu2.jpg" class="d-block w-100" alt="Actualité 2">
+            <div class="carousel-caption d-block news-content">
+              <h3 class="news-title">Performance remarquée en CHAN 2025</h3>
+              <p class="news-text">Mehri a brillé lors du Championnat d'Afrique des Nations (CHAN) 2025, contribuant significativement à la victoire du Maroc dans la compétition.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="images/actualites/actu3.jpg" class="d-block w-100" alt="Actualité 3">
+            <div class="carousel-caption d-block news-content">
+              <h3 class="news-title">Nouveau contrat avec la RS Berkane</h3>
+              <p class="news-text">Youssef Mehri prolonge son engagement avec la Renaissance Sportive de Berkane jusqu'en 2026, confirmant sa place essentielle dans l'effectif du club.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselActualites" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselActualites" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Suivant</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Photos -->
+    <section id="photos" class="container py-4">
+      <h2 class="section-title">Photos</h2>
+      
+      <!-- Carrousel 1 -->
+      <h3 class="text-center mb-4" style="color: #f39c12; font-weight: bold;">CHAN 2025</h3>
+      <div id="carouselMatches" class="carousel slide mb-4" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="images/chan2025/mar01.jfif" alt="Match 1">
+          </div>
+          <div class="carousel-item">
+            <img src="images/chan2025/mar02.jfif" alt="Match 2">
+          </div>
+          <div class="carousel-item">
+            <img src="images/chan2025/mar03.jfif" class="d-block w-100" alt="Match 3">
+          </div>
+          <div class="carousel-item">
+            <img src="images/chan2025/mar04.jfif" class="d-block w-100" alt="Match 3">
+          </div>
+          <div class="carousel-item">
+            <img src="images/chan2025/mar05.jfif" class="d-block w-100" alt="Match 3">
+          </div>
+          <div class="carousel-item">
+            <img src="images/chan2025/mar06.jfif" class="d-block w-100" alt="Match 3">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselMatches" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselMatches" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Suivant</span>
+        </button>
+      </div>
+      
+      <!-- Carrousel 2 -->
+      <h3 class="text-center mb-4" style="color: #f39c12; font-weight: bold;">Entraînements</h3>
+      <div id="carouselTraining" class="carousel slide mb-4" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="images/entrainements/ent01.jfif" class="d-block w-100" alt="Entraînement 1">
+          </div>
+          <div class="carousel-item">
+            <img src="images/entrainements/ent02.jfif" class="d-block w-100" alt="Entraînement 2">
+          </div>
+          <div class="carousel-item">
+            <img src="images/entrainements/ent03.jfif" class="d-block w-100" alt="Entraînement 3">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselTraining" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselTraining" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Suivant</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Vidéos -->
+    <section id="videos" class="container py-4">
+      <h2 class="section-title">Vidéos</h2>
+      <div class="accordion" id="accordionVideos">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="video1">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideo1">
+              🎥 لقطة طريفة للمليوي مع ميهري: "Mr assist" .. وميهري: حنا كاملين منساجمين ماشي غير لي معايا فبركان
+            </button>
+          </h2>
+          <div id="collapseVideo1" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
+            <div class="accordion-body">
+              <iframe width="100%" height="315" src="https://www.youtube.com/embed/NZPS2q37bCQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="video2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideo2">
+              🎥 تصريح يوسف ميهري.. الحاصل على جائزة أفضل لاعب في مباراة المغرب وزامبيا
+            </button>
+          </h2>
+          <div id="collapseVideo2" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
+            <div class="accordion-body">
+              <iframe width="100%" height="315" src="https://www.youtube.com/embed/SP4RgWGHU6I" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="video3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideo3">
+              🎥 لقطة طريفة للمليوي مع ميهري: "Mr assist" .. وميهري: حنا كاملين منساجمين ماشي غير لي معايا فبركان
+            </button>
+          </h2>
+          <div id="collapseVideo3" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
+            <div class="accordion-body">
+              <iframe width="100%" height="315" src="https://www.youtube.com/embed/NZPS2q37bCQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="video4">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideo4">
+              🎥 لقطة طريفة للمليوي مع ميهري: "Mr assist" .. وميهري: حنا كاملين منساجمين ماشي غير لي معايا فبركان
+            </button>
+          </h2>
+          <div id="collapseVideo4" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
+            <div class="accordion-body">
+              <iframe width="100%" height="315" src="https://www.youtube.com/embed/NZPS2q37bCQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="video5">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideo5">
+              🎥 لقطة طريفة للمليوي مع ميهري: "Mr assist" .. وميهري: حنا كاملين منساجمين ماشي غير لي معايا فبركان
+            </button>
+          </h2>
+          <div id="collapseVideo5" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
+            <div class="accordion-body">
+              <iframe width="100%" height="315" src="https://www.youtube.com/embed/NZPS2q37bCQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="video6">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideo6">
+              🎥 لقطة طريفة للمليوي مع ميهري: "Mr assist" .. وميهري: حنا كاملين منساجمين ماشي غير لي معايا فبركان
+            </button>
+          </h2>
+          <div id="collapseVideo6" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
+            <div class="accordion-body">
+              <iframe width="100%" height="315" src="https://www.youtube.com/embed/NZPS2q37bCQ" frameborder="0) allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="video7">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideo7">
+              🎥 لقطة طريفة للمليوي مع ميهري: "Mr assist" .. وميهري: حنا كاملين منساجmين ماشي غير لي معايا فبركان
+            </button>
+          </h2>
+          <div id="collapseVideo7" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
+            <div class="accordion-body">
+              <iframe width="100%" height="315" src="https://www.youtube.com/embed/NZPS2q37bCQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="video8">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideo8">
+              🎥 لقطة طريفة للمليوي مع ميهری: "Mr assist" .. وميهري: حنا كاملين منساجمين ماشي غير لي معايا فبركان
+            </button>
+          </h2>
+          <div id="collapseVideo8" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
+            <div class="accordion-body">
+              <iframe width="100%" height="315" src="https://www.youtube.com/embed/NZPS2q37bCQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sponsors -->
+    <section id="sponsors" class="container py-4">
+      <h2 class="section-title">Sponsors</h2>
+      <div class="sponsors-container">
+        <div class="construction-icon">
+          <i class="fas fa-tools"></i>
+        </div>
+        <div class="construction-text">
+          Section en construction
+        </div>
+        <p class="justified-text text-center">
+          La section Sponsors est actuellement en développement. Revenez bientôt pour découvrir les partenaires officiels de Youssef Mehri.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="container py-4">
+      <h2 class="section-title">Contact</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <form id="contactForm">
+            <div class="mb-3">
+              <label class="form-label">Nom</label>
+              <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Objet</label>
+              <input type="text" class="form-control" id="subject" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Message</label>
+              <textarea class="form-control" id="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Envoyer via WhatsApp</button>
+          </form>
+          
+          <!-- Icônes des réseaux sociaux -->
+          <div class="social-icons">
+            <a href="#" class="social-icon instagram" data-network="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon facebook" data-network="Facebook">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#" class="social-icon twitter" data-network="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon youtube" data-network="YouTube">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Site non-officiel - Youssef Mehri © 2025</p>
+  </footer>
+
+  <!-- Conteneur pour les alertes -->
+  <div id="alertContainer" class="construction-alert"></div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav ul');
+    const navLinks = document.querySelectorAll('nav ul li a');
+    const sections = document.querySelectorAll('main section');
+    const alertContainer = document.getElementById('alertContainer');
+    
+    // Liste des animations disponibles
+    const animations = [
+      'animate-fadeIn',
+      'animate-slideInLeft', 
+      'animate-slideInRight',
+      'animate-slideInUp',
+      'animate-zoomIn',
+      'animate-rotateIn',
+      'animate-flipInX',
+      'animate-bounceIn'
+    ];
+    
+    // Compteur pour alterner les animations
+    let animationCounter = 0;
+
+    // Menu toggle mobile
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      toggle.classList.toggle('rotate');
+      if (nav.classList.contains('active')) {
+        toggle.classList.remove('fa-bars');
+        toggle.classList.add('fa-times');
+      } else {
+        toggle.classList.remove('fa-times');
+        toggle.classList.add('fa-bars');
+      }
+    });
+
+    // Afficher la section correspondante
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const target = link.getAttribute('data-section');
+        
+        // Masquer toutes les sections
+        sections.forEach(sec => {
+          sec.style.display = 'none';
+          sec.classList.remove('active');
+        });
+        
+        // Afficher seulement la section cliquée
+        const section = document.getElementById(target);
+        if (section) {
+          section.style.display = 'block';
+          
+          // Si ce n'est pas la section Actualités, appliquer les animations
+          if (target !== 'actualites') {
+            // Sélectionner une animation aléatoire
+            const animationType = animations[animationCounter % animations.length];
+            animationCounter++;
+            
+            // Appliquer l'animation à tous les éléments de la section
+            const elementsToAnimate = section.querySelectorAll('.section-title, .justified-text, .career-list li, .form-label, .form-control, .btn-success, .sponsors-container, .construction-icon, .construction-text, .social-icons, .social-icon, .accordion-item, .carousel-item');
+            
+            elementsToAnimate.forEach((element, index) => {
+              // Réinitialiser les classes d'animation
+              element.classList.remove('animate-fadeIn', 'animate-slideInLeft', 'animate-slideInRight', 
+                                     'animate-slideInUp', 'animate-zoomIn', 'animate-rotateIn', 
+                                     'animate-flipInX', 'animate-bounceIn', 
+                                     'animate-delay-1', 'animate-delay-2', 'animate-delay-3', 
+                                     'animate-delay-4', 'animate-delay-5');
+              
+              // Appliquer la nouvelle animation
+              element.classList.add(animationType);
+              
+              // Ajouter un délai progressif pour créer un effet cascade
+              const delayClass = `animate-delay-${(index % 5) + 1}`;
+              element.classList.add(delayClass);
+            });
+          }
+          
+          // Petit délai pour permettre l'affichage avant l'animation
+          setTimeout(() => {
+            section.classList.add('active');
+          }, 50);
+          
+          // Faire défiler vers le haut de la section avec un offset pour le header
+          const headerHeight = document.querySelector('header').offsetHeight;
+          window.scrollTo({
+            top: section.offsetTop - headerHeight + 10,
+            behavior: 'smooth'
+          });
+        }
+
+        // Fermer menu mobile
+        nav.classList.remove('active');
+        toggle.classList.remove('rotate');
+        toggle.classList.remove('fa-times');
+        toggle.classList.add('fa-bars');
+      });
+    });
+
+    // Stop vidéo YouTube à la fermeture de l'accordion
+    const accordions = document.querySelectorAll('.accordion-collapse');
+    accordions.forEach(acc => {
+      acc.addEventListener('hide.bs.collapse', () => {
+        const iframe = acc.querySelector('iframe');
+        if (iframe) iframe.src = iframe.src;
+      });
+    });
+
+    // Gestion du formulaire de contact
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      // Formater le message pour WhatsApp
+      const whatsappMessage = `Nom: ${name}%0AObjet: ${subject}%0AMessage: ${message}`;
+      
+      // Ouvrir WhatsApp avec le message pré-rempli
+      window.open(`https://wa.me/212608975435?text=${whatsappMessage}`, '_blank');
+    });
+
+    // Fonction pour afficher une alerte de construction
+    function showConstructionAlert(network) {
+      // Supprimer toute alerte existante
+      alertContainer.innerHTML = '';
+      
+      // Créer une nouvelle alerte Bootstrap
+      const alertDiv = document.createElement('div');
+      alertDiv.className = 'alert alert-warning alert-dismissible fade show';
+      alertDiv.setAttribute('role', 'alert');
+      alertDiv.innerHTML = `
+        <strong>En construction!</strong> La page ${network} est actuellement en cours de développement.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      `;
+      
+      // Ajouter l'alerte au conteneur
+      alertContainer.appendChild(alertDiv);
+      
+      // Fermer automatiquement l'alerte après 5 secondes
+      setTimeout(() => {
+        const bsAlert = new bootstrap.Alert(alertDiv);
+        bsAlert.close();
+      }, 5000);
+    }
+
+    // Ajouter des écouteurs d'événements aux icônes des réseaux sociaux
+    document.querySelectorAll('.social-icon').forEach(icon => {
+      icon.addEventListener('click', (e) => {
+        e.preventDefault();
+        const network = icon.getAttribute('data-network');
+        showConstructionAlert(network);
+      });
+    });
+
+    // Animation initiale du contenu de la section active
+    document.addEventListener('DOMContentLoaded', () => {
+      const activeSection = document.querySelector('section.active');
+      if (activeSection && activeSection.id !== 'actualites') {
+        // Appliquer une animation aléatoire au chargement initial
+        const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+        const elementsToAnimate = activeSection.querySelectorAll('.section-title, .justified-text, .career-list li, .form-label, .form-control, .btn-success, .sponsors-container, .construction-icon, .construction-text, .social-icons, .social-icon, .accordion-item, .carousel-item');
+        
+        elementsToAnimate.forEach((element, index) => {
+          element.classList.add(randomAnimation);
+          const delayClass = `animate-delay-${(index % 5) + 1}`;
+          element.classList.add(delayClass);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
