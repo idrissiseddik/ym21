@@ -16,7 +16,7 @@
       color: #fff;
       font-family: 'Roboto', sans-serif;
       margin: 0;
-      padding-top: 100px; /* Espacement réduit pour le header compact */
+      padding-top: 100px;
     }
 
     header, footer {
@@ -29,11 +29,11 @@
     header {
       position: fixed;
       top: 0;
-      padding: 8px 20px; /* Padding réduit */
+      padding: 8px 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 100px; /* Header plus compact */
+      height: 100px;
     }
 
     .header-top {
@@ -44,7 +44,7 @@
     }
 
     header h1 {
-      font-size: 22px; /* Taille réduite */
+      font-size: 22px;
       font-weight: bold;
       order: 2;
       font-family: 'Montserrat', sans-serif;
@@ -52,7 +52,7 @@
     }
 
     .menu-toggle {
-      font-size: 28px; /* Taille augmentée pour mobile */
+      font-size: 28px;
       cursor: pointer;
       display: none;
       color: #fff;
@@ -72,7 +72,7 @@
     nav ul {
       list-style: none;
       display: flex;
-      gap: 15px; /* Espacement réduit */
+      gap: 15px;
       margin: 0;
       padding: 0;
     }
@@ -81,7 +81,7 @@
       color: #fff;
       text-decoration: none;
       font-weight: bold;
-      font-size: 0.9rem; /* Taille réduite */
+      font-size: 0.9rem;
       cursor: pointer;
       transition: color 0.3s;
     }
@@ -93,7 +93,7 @@
     @media(max-width:768px){
       .menu-toggle { 
         display: block; 
-        font-size: 32px; /* Taille augmentée pour mobile */
+        font-size: 32px;
       }
       nav ul {
         display: none;
@@ -103,26 +103,25 @@
         top: 100%;
         left: 0;
         width: 100%;
-        padding: 15px; /* Padding réduit */
+        padding: 15px;
         border-radius: 0 0 8px 8px;
         box-shadow: 0 4px 6px rgba(0,0,0,0.3);
       }
       nav ul.active { display: flex; }
     }
 
-    /* Message de bienvenue dans le header */
     .welcome-message {
       width: 100%;
       background-color: #000;
       color: #f39c12;
-      padding: 5px 0; /* Padding réduit */
+      padding: 5px 0;
       overflow: hidden;
       font-weight: bold;
       text-align: center;
-      margin-top: 5px; /* Marge réduite */
+      margin-top: 5px;
       border-top: 1px solid #333;
       border-bottom: 1px solid #333;
-      font-size: 0.85rem; /* Taille réduite */
+      font-size: 0.85rem;
     }
 
     .welcome-text {
@@ -147,16 +146,15 @@
     }
 
     section {
-      margin-bottom: 30px; /* Espacement réduit */
+      margin-bottom: 30px;
       display: none;
-      padding-top: 20px; /* Espacement réduit */
+      padding-top: 20px;
     }
 
     section.active {
       display: block;
     }
 
-    /* Style pour les titres de section */
     .section-title {
       text-align: center;
       font-size: 2.2rem;
@@ -164,14 +162,13 @@
       text-decoration: underline;
       text-decoration-color: #f39c12;
       text-underline-offset: 8px;
-      margin-bottom: 25px; /* Marge réduit */
+      margin-bottom: 25px;
       font-family: 'Montserrat', sans-serif;
       text-transform: uppercase;
       letter-spacing: 1px;
-      padding-top: 10px; /* Padding réduit */
+      padding-top: 10px;
     }
 
-    /* Style pour les textes justifiés */
     .justified-text {
       text-align: justify;
       line-height: 1.7;
@@ -206,7 +203,7 @@
       position: relative;
       overflow: hidden;
       padding-top: 0;
-      margin-top: -100px; /* Ajusté pour le header compact */
+      margin-top: -100px;
     }
 
     .hero-image {
@@ -217,7 +214,6 @@
       height: 100%;
       object-fit: cover;
       z-index: -2;
-      /* Animation de chute */
       transform: translateY(-100%);
       animation: fallDown 1.5s ease-out forwards;
       animation-delay: 0.3s;
@@ -287,7 +283,7 @@
     }
 
     @keyframes fadeIn {
-      0% {
+     0% {
         opacity: 0;
       }
       100% {
@@ -314,7 +310,6 @@
       margin-bottom: 5px;
     }
 
-    /* Style pour le carrousel */
     .carousel-item {
       height: 380px;
       overflow: hidden;
@@ -326,7 +321,6 @@
       object-fit: cover;
     }
 
-    /* Style pour le carrousel des actualités */
     .news-carousel {
       margin-bottom: 30px;
     }
@@ -374,7 +368,6 @@
     }
     footer a:hover { color: #fff; }
 
-    /* Style pour la section Carrière */
     .career-list {
       list-style-type: none;
       padding: 0;
@@ -389,7 +382,6 @@
       text-align: justify;
     }
 
-    /* Style pour le formulaire de contact */
     .form-label {
       font-weight: 500;
       margin-bottom: 10px;
@@ -408,7 +400,6 @@
       border-color: #128C7E;
     }
 
-    /* Style pour la section Sponsors */
     .sponsors-container {
       text-align: center;
       padding: 40px 20px;
@@ -429,7 +420,6 @@
       margin-bottom: 20px;
     }
 
-    /* Style pour les icônes de réseaux sociaux */
     .social-icons {
       display: flex;
       justify-content: center;
@@ -465,7 +455,6 @@
       color: #cd201f;
     }
 
-    /* Style pour l'alerte de construction */
     .construction-alert {
       position: fixed;
       bottom: 70px;
@@ -476,7 +465,6 @@
       max-width: 500px;
     }
 
-    /* Animations variées */
     .animate-fadeIn {
       opacity: 0;
       animation: fadeIn 0.8s ease forwards;
@@ -589,7 +577,6 @@
       }
     }
 
-    /* Délais d'animation pour les éléments enfants */
     .animate-delay-1 {
       animation-delay: 0.1s;
     }
@@ -610,7 +597,6 @@
       animation-delay: 0.5s;
     }
 
-    /* Media Queries pour l'adaptation responsive */
     @media (max-width: 992px) {
       body {
         padding-top: 90px;
@@ -702,7 +688,7 @@
       }
       
       .menu-toggle {
-        font-size: 36px; /* Taille augmentée pour mobile */
+        font-size: 36px;
       }
     }
 
@@ -721,7 +707,7 @@
       }
       
       .menu-toggle {
-        font-size: 32px; /* Taille augmentée pour mobile */
+        font-size: 32px;
       }
       
       .hero {
@@ -777,19 +763,17 @@
       }
     }
 
-    /* Espacement supplémentaire pour la section vidéos */
     #videos {
-      padding-bottom: 120px; /* Augmentation de l'espace en bas de la section vidéos */
+      padding-bottom: 120px;
     }
 
-    /* Overlay pour les actualités */
     .news-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: rgba(0, 0, 0, 0.95);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -810,7 +794,7 @@
       max-width: 800px;
       max-height: 90vh;
       overflow-y: auto;
-      padding: 20px;
+      padding: 30px;
       border-radius: 10px;
       position: relative;
     }
@@ -836,7 +820,12 @@
       background: #e67e22;
     }
 
-    /* Galerie photo en grille */
+    .news-overlay-text {
+      text-align: justify;
+      line-height: 1.7;
+      font-size: 1.1rem;
+    }
+
     .photo-gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -871,14 +860,13 @@
       font-size: 1.5rem;
     }
 
-    /* Overlay pour les galeries photos */
     .gallery-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.95);
+      background-color: rgba(0, 0, 0, 0.98);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -925,6 +913,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      z-index: 2003;
     }
 
     .close-gallery:hover {
@@ -933,24 +922,73 @@
 
     .gallery-carousel-container {
       width: 100%;
-      max-width: 1000px;
-      padding: 60px 20px 20px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .gallery-carousel {
+      width: 100%;
+      height: 100%;
+    }
+
+    .gallery-carousel .carousel-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .gallery-carousel .carousel-item {
+      text-align: center;
+      height: 100%;
     }
 
     .gallery-carousel .carousel-item img {
-      width: 100%;
-      height: 70vh;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
       object-fit: contain;
+      margin: 0 auto;
     }
 
     .gallery-carousel-controls {
       position: absolute;
-      bottom: 20px;
+      bottom: 30px;
       left: 0;
       right: 0;
       display: flex;
       justify-content: center;
       z-index: 2001;
+    }
+
+    .gallery-carousel .carousel-indicators {
+      bottom: 20px;
+    }
+
+    .gallery-carousel .carousel-control-prev,
+    .gallery-carousel .carousel-control-next {
+      width: 50px;
+      height: 50px;
+      background-color: rgba(243, 156, 18, 0.7);
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.8;
+    }
+
+    .gallery-carousel .carousel-control-prev {
+      left: 20px;
+    }
+
+    .gallery-carousel .carousel-control-next {
+      right: 20px;
+    }
+
+    .gallery-carousel .carousel-control-prev:hover,
+    .gallery-carousel .carousel-control-next:hover {
+      opacity: 1;
     }
   </style>
 </head>
@@ -1142,6 +1180,16 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
         </div>
         <!-- Les autres images seront chargées via JavaScript -->
       </div>
+      
+      <!-- NOUVELLE GALERIE - Exemple à suivre pour ajouter des galeries -->
+      <!-- 
+      <h3 class="gallery-title">NOM_DE_LA_GALERIE</h3>
+      <div class="photo-gallery" data-gallery="NOM_GALERIE">
+        <div class="gallery-item">
+          <img src="CHEMIN/VERS/IMAGE.jpg" alt="Description image">
+        </div>
+      </div>
+      -->
     </section>
 
     <!-- Vidéos -->
@@ -1172,7 +1220,34 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
             </div>
           </div>
         </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="video3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideo3">
+              🎥 لقطة طريفة للمليوي مع ميهري: "Mr assist" .. وميهري: حنا كاملين منساجمين ماشي غير لي معايا فبركان
+            </button>
+          </h2>
+          <div id="collapseVideo3" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
+            <div class="accordion-body">
+              <iframe width="100%" height="315" src="https://www.youtube.com/embed/NZPS2q37bCQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
         </div>
+        
+        <!-- NOUVELLE VIDEO - Exemple à suivre pour ajouter des vidéos -->
+        <!--
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="videoX">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideoX">
+              🎥 TITRE_DE_LA_VIDEO
+            </button>
+          </h2>
+          <div id="collapseVideoX" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
+            <div class="accordion-body">
+              <iframe width="100%" height="315" src="URL_DE_LA_VIDEO" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        -->
       </div>
     </section>
 
@@ -1252,7 +1327,7 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
       <span class="close-gallery" id="closeGallery">&times;</span>
     </div>
     <div class="gallery-carousel-container">
-      <div id="galleryCarousel" class="carousel slide gallery-carousel" data-bs-ride="carousel">
+      <div id="galleryCarousel" class="carousel slide gallery-carousel" data-bs-ride="false">
         <div class="carousel-inner" id="galleryCarouselInner">
           <!-- Contenu généré dynamiquement -->
         </div>
@@ -1274,6 +1349,58 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+    // =============================================
+    // CONFIGURATION FACILE - MODIFIEZ CES VARIABLES
+    // =============================================
+    
+    // Données des actualités - Ajoutez vos nouvelles actualités ici
+    const newsData = [
+      {
+        title: "Record historique en Coupe de la CAF",
+        image: "images/actualites/actu1.jfif",
+        content: "Youssef Mehri entre dans l'histoire du football africain en marquant le but le plus rapide de la Coupe de la CAF après seulement 13 secondes de jeu contre le CS Constantine en demi-finale. Cet exploit a été réalisé lors du match aller des demi-finales de la Coupe de la Confédération Africaine, établissant un nouveau record dans la compétition. Ce but historique a non seulement contribué à la victoire de son équipe mais a également attiré l'attention des médias internationaux sur le talent de ce jeune joueur marocain. Plusieurs grands noms du football africain ont salué cette performance exceptionnelle qui restera dans les annales du football continental."
+      },
+      {
+        title: "Performance remarquée en CHAN 2025",
+        image: "images/actualites/actu2.jfif",
+        content: "Mehri a brillé lors du Championnat d'Afrique des Nations (CHAN) 2025, contribuant significativement à la victoire du Maroc dans la compétition. Ses performances offensives et sa capacité à créer des occasions ont été saluées par les experts et les supporters. Tout au long du tournoi, il a démontré une maturité tactique remarquable pour son jeune âge, devenant l'un des artisans majeurs du succès marocain. Son understanding du jeu et sa vision ont permis à l'équipe nationale de se démarquer face à des adversaires redoutables. Cette compétition a confirmé son statut de joueur incontournable dans le paysage footballistique marocain et africain."
+      },
+      {
+        title: "Nouveau contrat avec la RS Berkane",
+        image: "images/actualites/actu3.jfif",
+        content: "Youssef Mehri prolonge son engagement avec la Renaissance Sportive de Berkane jusqu'en 2026, confirmant sa place essentielle dans l'effectif du club. Cette prolongation témoigne de la confiance que lui accorde le staff technique et la direction du club. Depuis son arrivée à Berkane, Mehri s'est imposé comme un élément clé de l'attaque, contribuant grandement aux succès de l'équipe en championnat et en coupes africaines. Son association avec les autres attaquants du club a produit un football attractif et efficace qui a ravi les supporters. Cette nouvelle a été accueillie avec enthousiasme par les fans qui voien en lui un joueur capable de porter l'équipe vers de nouveaux succès."
+      }
+      // AJOUTEZ DE NOUVELLES ACTUALITÉS CI-DESSOUS
+    ];
+
+    // Données des galeries photos - Ajoutez vos nouvelles galeries ici
+    const galleryData = {
+      chan2025: {
+        title: "CHAN 2025",
+        images: [
+          "images/chan2025/mar01.jfif",
+          "images/chan2025/mar02.jfif",
+          "images/chan2025/mar03.jfif",
+          "images/chan2025/mar04.jfif",
+          "images/chan2025/mar05.jfif",
+          "images/chan2025/mar06.jfif"
+        ]
+      },
+      entrainements: {
+        title: "Entraînements",
+        images: [
+          "images/entrainements/ent01.jfif",
+          "images/entrainements/ent02.jfif",
+          "images/entrainements/ent03.jfif"
+        ]
+      }
+      // AJOUTEZ DE NOUVELLES GALERIES CI-DESSOUS
+    };
+
+    // =============================================
+    // FIN DE LA CONFIGURATION - NE PAS MODIFIER CI-DESSOUS
+    // =============================================
+
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav ul');
     const navLinks = document.querySelectorAll('nav ul li a');
@@ -1301,48 +1428,6 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
     
     // Compteur pour alterner les animations
     let animationCounter = 0;
-
-    // Données des actualités
-    const newsData = [
-      {
-        title: "Record historique en Coupe de la CAF",
-        image: "images/actualites/actu1.jfif",
-        content: "Youssef Mehri entre dans l'histoire du football africain en marquant le but le plus rapide de la Coupe de la CAF après seulement 13 secondes de jeu contre le CS Constantine en demi-finale. Cet exploit a été réalisé lors du match aller des demi-finales de la Coupe de la Confédération Africaine, établissant un nouveau record dans la compétition."
-      },
-      {
-        title: "Performance remarquée en CHAN 2025",
-        image: "images/actualites/actu2.jfif",
-        content: "Mehri a brillé lors du Championnat d'Afrique des Nations (CHAN) 2025, contribuant significativement à la victoire du Maroc dans la compétition. Ses performances offensives et sa capacité à créer des occasions ont été saluées par les experts et les supporters."
-      },
-      {
-        title: "Nouveau contrat avec la RS Berkane",
-        image: "images/actualites/actu3.jfif",
-        content: "Youssef Mehri prolonge son engagement avec la Renaissance Sportive de Berkane jusqu'en 2026, confirmant sa place essentielle dans l'effectif du club. Cette prolongation témoigne de la confiance que lui accorde le staff technique et la direction du club."
-      }
-    ];
-
-    // Données des galeries photos
-    const galleryData = {
-      chan2025: {
-        title: "CHAN 2025",
-        images: [
-          "images/chan2025/mar01.jfif",
-          "images/chan2025/mar02.jfif",
-          "images/chan2025/mar03.jfif",
-          "images/chan2025/mar04.jfif",
-          "images/chan2025/mar05.jfif",
-          "images/chan2025/mar06.jfif"
-        ]
-      },
-      entrainements: {
-        title: "Entraînements",
-        images: [
-          "images/entrainements/ent01.jfif",
-          "images/entrainements/ent02.jfif",
-          "images/entrainements/ent03.jfif"
-        ]
-      }
-    };
 
     // Menu toggle mobile
     toggle.addEventListener('click', () => {
@@ -1497,7 +1582,49 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
       
       // Ajouter les écouteurs d'événements pour les actualités
       initNewsOverlay();
+      
+      // Mettre à jour le carrousel d'actualités avec les données
+      updateNewsCarousel();
     });
+
+    // Mettre à jour le carrousel d'actualités
+    function updateNewsCarousel() {
+      const carouselInner = document.querySelector('#carouselActualites .carousel-inner');
+      const indicators = document.querySelector('#carouselActualites .carousel-indicators');
+      
+      // Vider le carrousel existant
+      carouselInner.innerHTML = '';
+      indicators.innerHTML = '';
+      
+      // Ajouter les nouvelles actualités
+      newsData.forEach((news, index) => {
+        // Créer l'indicateur
+        const indicator = document.createElement('button');
+        indicator.type = 'button';
+        indicator.dataset.bsTarget = '#carouselActualites';
+        indicator.dataset.bsSlideTo = index;
+        if (index === 0) indicator.classList.add('active');
+        indicators.appendChild(indicator);
+        
+        // Créer l'élément carousel
+        const carouselItem = document.createElement('div');
+        carouselItem.className = `carousel-item ${index === 0 ? 'active' : ''}`;
+        carouselItem.dataset.newsIndex = index;
+        carouselItem.innerHTML = `
+          <img src="${news.image}" class="d-block w-100" alt="${news.title}">
+          <div class="carousel-caption d-block news-content">
+            <h3 class="news-title">${news.title}</h3>
+            <p class="news-text">${news.content.substring(0, 150)}...</p>
+          </div>
+        `;
+        carouselInner.appendChild(carouselItem);
+        
+        // Ajouter l'écouteur d'événement
+        carouselItem.addEventListener('click', () => {
+          showNewsOverlay(index);
+        });
+      });
+    }
 
     // Initialiser les galeries photos
     function initPhotoGalleries() {
@@ -1539,6 +1666,12 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
       
       // Afficher l'overlay
       galleryOverlay.classList.add('active');
+      
+      // Désactiver le défilement automatique
+      const galleryCarousel = document.getElementById('galleryCarousel');
+      const bsCarousel = new bootstrap.Carousel(galleryCarousel, {
+        interval: false // Désactive le défilement automatique
+      });
     }
 
     // Fermer la galerie
@@ -1560,15 +1693,22 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
       closeNews.addEventListener('click', () => {
         newsOverlay.classList.remove('active');
       });
+      
+      // Fermer l'overlay en cliquant à l'extérieur
+      newsOverlay.addEventListener('click', (e) => {
+        if (e.target === newsOverlay) {
+          newsOverlay.classList.remove('active');
+        }
+      });
     }
 
     // Afficher l'overlay des actualités
     function showNewsOverlay(newsIndex) {
       const news = newsData[newsIndex];
       newsOverlayContent.innerHTML = `
-        <img src="${news.image}" class="img-fluid mb-4" alt="${news.title}">
-        <h3 class="news-title">${news.title}</h3>
-        <p class="news-text">${news.content}</p>
+        <img src="${news.image}" class="img-fluid mb-4 w-100" alt="${news.title}" style="max-height: 400px; object-fit: cover;">
+        <h3 class="news-title text-center">${news.title}</h3>
+        <p class="news-overlay-text">${news.content}</p>
       `;
       newsOverlay.classList.add('active');
     }
