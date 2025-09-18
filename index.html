@@ -52,12 +52,13 @@
     }
 
     .menu-toggle {
-      font-size: 24px; /* Taille réduite */
+      font-size: 28px; /* Taille augmentée pour mobile */
       cursor: pointer;
       display: none;
       color: #fff;
       transition: transform 0.3s ease;
       order: 1;
+      padding: 5px;
     }
 
     .menu-toggle.rotate {
@@ -92,6 +93,7 @@
     @media(max-width:768px){
       .menu-toggle { 
         display: block; 
+        font-size: 32px; /* Taille augmentée pour mobile */
       }
       nav ul {
         display: none;
@@ -332,6 +334,7 @@
     .news-carousel .carousel-item {
       height: auto;
       min-height: 500px;
+      cursor: pointer;
     }
     
     .news-content {
@@ -383,6 +386,7 @@
       padding: 18px;
       border-left: 4px solid #f39c12;
       border-radius: 0 5px 5px 0;
+      text-align: justify;
     }
 
     /* Style pour le formulaire de contact */
@@ -696,6 +700,10 @@
       .news-text {
         font-size: 1rem;
       }
+      
+      .menu-toggle {
+        font-size: 36px; /* Taille augmentée pour mobile */
+      }
     }
 
     @media (max-width: 576px) {
@@ -713,7 +721,7 @@
       }
       
       .menu-toggle {
-        font-size: 20px;
+        font-size: 32px; /* Taille augmentée pour mobile */
       }
       
       .hero {
@@ -771,7 +779,178 @@
 
     /* Espacement supplémentaire pour la section vidéos */
     #videos {
-      padding-bottom: 80px; /* Augmentation de l'espace en bas de la section vidéos */
+      padding-bottom: 120px; /* Augmentation de l'espace en bas de la section vidéos */
+    }
+
+    /* Overlay pour les actualités */
+    .news-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .news-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .news-overlay-content {
+      background-color: #111;
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 20px;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .close-news {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 28px;
+      color: #fff;
+      cursor: pointer;
+      z-index: 2001;
+      background: #f39c12;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .close-news:hover {
+      background: #e67e22;
+    }
+
+    /* Galerie photo en grille */
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      cursor: pointer;
+      height: 200px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-title {
+      text-align: center;
+      color: #f39c12;
+      font-weight: bold;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    /* Overlay pour les galeries photos */
+    .gallery-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .gallery-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .gallery-overlay-header {
+      width: 100%;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2002;
+    }
+
+    .gallery-overlay-title {
+      color: #f39c12;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .close-gallery {
+      font-size: 28px;
+      color: #fff;
+      cursor: pointer;
+      background: #f39c12;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .close-gallery:hover {
+      background: #e67e22;
+    }
+
+    .gallery-carousel-container {
+      width: 100%;
+      max-width: 1000px;
+      padding: 60px 20px 20px;
+    }
+
+    .gallery-carousel .carousel-item img {
+      width: 100%;
+      height: 70vh;
+      object-fit: contain;
+    }
+
+    .gallery-carousel-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      z-index: 2001;
     }
   </style>
 </head>
@@ -909,21 +1088,21 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
           <button type="button" data-bs-target="#carouselActualites" data-bs-slide-to="2"></button>
         </div>
         <div class="carousel-inner">
-          <div class="carousel-item active">
+          <div class="carousel-item active" data-news-index="0">
             <img src="images/actualites/actu1.jfif" class="d-block w-100" alt="Actualité 1">
             <div class="carousel-caption d-block news-content">
               <h3 class="news-title">Record historique en Coupe de la CAF</h3>
               <p class="news-text">Youssef Mehri entre dans l'histoire du football africain en marquant le but le plus rapide de la Coupe de la CAF après seulement 13 secondes de jeu contre le CS Constantine en demi-finale.</p>
             </div>
           </div>
-          <div class="carousel-item">
+          <div class="carousel-item" data-news-index="1">
             <img src="images/actualites/actu2.jfif" class="d-block w-100" alt="Actualité 2">
             <div class="carousel-caption d-block news-content">
               <h3 class="news-title">Performance remarquée en CHAN 2025</h3>
               <p class="news-text">Mehri a brillé lors du Championnat d'Afrique des Nations (CHAN) 2025, contribuant significativement à la victoire du Maroc dans la compétition.</p>
             </div>
           </div>
-          <div class="carousel-item">
+          <div class="carousel-item" data-news-index="2">
             <img src="images/actualites/actu3.jfif" class="d-block w-100" alt="Actualité 3">
             <div class="carousel-caption d-block news-content">
               <h3 class="news-title">Nouveau contrat avec la RS Berkane</h3>
@@ -946,61 +1125,22 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
     <section id="photos" class="container py-4">
       <h2 class="section-title">Photos</h2>
       
-      <!-- Carrousel 1 -->
-      <h3 class="text-center mb-4" style="color: #f39c12; font-weight: bold;">CHAN 2025</h3>
-      <div id="carouselMatches" class="carousel slide mb-4" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="images/chan2025/mar01.jfif" alt="Match 1">
-          </div>
-          <div class="carousel-item">
-            <img src="images/chan2025/mar02.jfif" alt="Match 2">
-          </div>
-          <div class="carousel-item">
-            <img src="images/chan2025/mar03.jfif" class="d-block w-100" alt="Match 3">
-          </div>
-          <div class="carousel-item">
-            <img src="images/chan2025/mar04.jfif" class="d-block w-100" alt="Match 3">
-          </div>
-          <div class="carousel-item">
-            <img src="images/chan2025/mar05.jfif" class="d-block w-100" alt="Match 3">
-          </div>
-          <div class="carousel-item">
-            <img src="images/chan2025/mar06.jfif" class="d-block w-100" alt="Match 3">
-          </div>
+      <!-- Galerie CHAN 2025 -->
+      <h3 class="gallery-title">CHAN 2025</h3>
+      <div class="photo-gallery" data-gallery="chan2025">
+        <div class="gallery-item">
+          <img src="images/chan2025/mar01.jfif" alt="CHAN 2025 - Image 1">
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselMatches" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Précédent</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselMatches" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Suivant</span>
-        </button>
+        <!-- Les autres images seront chargées via JavaScript -->
       </div>
       
-      <!-- Carrousel 2 -->
-      <h3 class="text-center mb-4" style="color: #f39c12; font-weight: bold;">Entraînements</h3>
-      <div id="carouselTraining" class="carousel slide mb-4" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="images/entrainements/ent01.jfif" class="d-block w-100" alt="Entraînement 1">
-          </div>
-          <div class="carousel-item">
-            <img src="images/entrainements/ent02.jfif" class="d-block w-100" alt="Entraînement 2">
-          </div>
-          <div class="carousel-item">
-            <img src="images/entrainements/ent03.jfif" class="d-block w-100" alt="Entraînement 3">
-          </div>
+      <!-- Galerie Entraînements -->
+      <h3 class="gallery-title">Entraînements</h3>
+      <div class="photo-gallery" data-gallery="entrainements">
+        <div class="gallery-item">
+          <img src="images/entrainements/ent01.jfif" alt="Entraînement - Image 1">
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselTraining" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Précédent</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselTraining" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Suivant</span>
-        </button>
+        <!-- Les autres images seront chargées via JavaScript -->
       </div>
     </section>
 
@@ -1032,77 +1172,6 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
             </div>
           </div>
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="video3">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideo3">
-              🎥 لقطة طريفة للمليوي مع ميهري: "Mr assist" .. وميهري: حنا كاملين منساجمين ماشي غير لي معايا فبركان
-            </button>
-          </h2>
-          <div id="collapseVideo3" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
-            <div class="accordion-body">
-              <iframe width="100%" height="315" src="https://www.youtube.com/embed/NZPS2q37bCQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="video4">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideo4">
-              🎥 لقطة طريفة للمليوي مع ميهري: "Mr assist" .. وميهري: حنا كاملين منساجمين ماشي غير لي معايا فبركان
-            </button>
-          </h2>
-          <div id="collapseVideo4" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
-            <div class="accordion-body">
-              <iframe width="100%" height="315" src="https://www.youtube.com/embed/NZPS2q37bCQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="video5">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideo5">
-              🎥 لقطة طريفة للمليوي مع ميهري: "Mr assist" .. وميهري: حنا كاملين منساجمين ماشي غير لي معايا فبركان
-            </button>
-          </h2>
-          <div id="collapseVideo5" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
-            <div class="accordion-body">
-              <iframe width="100%" height="315" src="https://www.youtube.com/embed/NZPS2q37bCQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="video6">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideo6">
-              🎥 لقطة طريفة للمليوي مع ميهري: "Mr assist" .. وميهري: حنا كاملين منساجمين ماشي غير لي معايا فبركان
-            </button>
-          </h2>
-          <div id="collapseVideo6" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
-            <div class="accordion-body">
-              <iframe width="100%" height="315" src="https://www.youtube.com/embed/NZPS2q37bCQ" frameborder="0) allowfullscreen></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="video7">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideo7">
-              🎥 لقطة طريفة للمليوي مع ميهري: "Mr assist" .. وميهري: حنا كاملين منساجmين ماشي غير لي معايا فبركان
-            </button>
-          </h2>
-          <div id="collapseVideo7" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
-            <div class="accordion-body">
-              <iframe width="100%" height="315" src="https://www.youtube.com/embed/NZPS2q37bCQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="video8">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVideo8">
-              🎥 لقطة طريفة للمليوي مع ميهری: "Mr assist" .. وميهري: حنا كاملين منساجمين ماشي غير لي معايا فبركان
-            </button>
-          </h2>
-          <div id="collapseVideo8" class="accordion-collapse collapse" data-bs-parent="#accordionVideos">
-            <div class="accordion-body">
-              <iframe width="100%" height="315" src="https://www.youtube.com/embed/NZPS2q37bCQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -1168,6 +1237,37 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
     <p>Site non-officiel - Youssef Mehri © 2025</p>
   </footer>
 
+  <!-- Overlay pour les actualités -->
+  <div class="news-overlay" id="newsOverlay">
+    <div class="news-overlay-content">
+      <span class="close-news" id="closeNews">&times;</span>
+      <div id="newsOverlayContent"></div>
+    </div>
+  </div>
+
+  <!-- Overlay pour les galeries photos -->
+  <div class="gallery-overlay" id="galleryOverlay">
+    <div class="gallery-overlay-header">
+      <h3 class="gallery-overlay-title" id="galleryOverlayTitle"></h3>
+      <span class="close-gallery" id="closeGallery">&times;</span>
+    </div>
+    <div class="gallery-carousel-container">
+      <div id="galleryCarousel" class="carousel slide gallery-carousel" data-bs-ride="carousel">
+        <div class="carousel-inner" id="galleryCarouselInner">
+          <!-- Contenu généré dynamiquement -->
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Suivant</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Conteneur pour les alertes -->
   <div id="alertContainer" class="construction-alert"></div>
 
@@ -1179,6 +1279,13 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
     const navLinks = document.querySelectorAll('nav ul li a');
     const sections = document.querySelectorAll('main section');
     const alertContainer = document.getElementById('alertContainer');
+    const newsOverlay = document.getElementById('newsOverlay');
+    const closeNews = document.getElementById('closeNews');
+    const newsOverlayContent = document.getElementById('newsOverlayContent');
+    const galleryOverlay = document.getElementById('galleryOverlay');
+    const closeGallery = document.getElementById('closeGallery');
+    const galleryOverlayTitle = document.getElementById('galleryOverlayTitle');
+    const galleryCarouselInner = document.getElementById('galleryCarouselInner');
     
     // Liste des animations disponibles
     const animations = [
@@ -1194,6 +1301,48 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
     
     // Compteur pour alterner les animations
     let animationCounter = 0;
+
+    // Données des actualités
+    const newsData = [
+      {
+        title: "Record historique en Coupe de la CAF",
+        image: "images/actualites/actu1.jfif",
+        content: "Youssef Mehri entre dans l'histoire du football africain en marquant le but le plus rapide de la Coupe de la CAF après seulement 13 secondes de jeu contre le CS Constantine en demi-finale. Cet exploit a été réalisé lors du match aller des demi-finales de la Coupe de la Confédération Africaine, établissant un nouveau record dans la compétition."
+      },
+      {
+        title: "Performance remarquée en CHAN 2025",
+        image: "images/actualites/actu2.jfif",
+        content: "Mehri a brillé lors du Championnat d'Afrique des Nations (CHAN) 2025, contribuant significativement à la victoire du Maroc dans la compétition. Ses performances offensives et sa capacité à créer des occasions ont été saluées par les experts et les supporters."
+      },
+      {
+        title: "Nouveau contrat avec la RS Berkane",
+        image: "images/actualites/actu3.jfif",
+        content: "Youssef Mehri prolonge son engagement avec la Renaissance Sportive de Berkane jusqu'en 2026, confirmant sa place essentielle dans l'effectif du club. Cette prolongation témoigne de la confiance que lui accorde le staff technique et la direction du club."
+      }
+    ];
+
+    // Données des galeries photos
+    const galleryData = {
+      chan2025: {
+        title: "CHAN 2025",
+        images: [
+          "images/chan2025/mar01.jfif",
+          "images/chan2025/mar02.jfif",
+          "images/chan2025/mar03.jfif",
+          "images/chan2025/mar04.jfif",
+          "images/chan2025/mar05.jfif",
+          "images/chan2025/mar06.jfif"
+        ]
+      },
+      entrainements: {
+        title: "Entraînements",
+        images: [
+          "images/entrainements/ent01.jfif",
+          "images/entrainements/ent02.jfif",
+          "images/entrainements/ent03.jfif"
+        ]
+      }
+    };
 
     // Menu toggle mobile
     toggle.addEventListener('click', () => {
@@ -1231,7 +1380,7 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
             animationCounter++;
             
             // Appliquer l'animation à tous les éléments de la section
-            const elementsToAnimate = section.querySelectorAll('.section-title, .justified-text, .career-list li, .form-label, .form-control, .btn-success, .sponsors-container, .construction-icon, .construction-text, .social-icons, .social-icon, .accordion-item, .carousel-item');
+            const elementsToAnimate = section.querySelectorAll('.section-title, .justified-text, .career-list li, .form-label, .form-control, .btn-success, .sponsors-container, .construction-icon, .construction-text, .social-icons, .social-icon, .accordion-item, .carousel-item, .photo-gallery, .gallery-title, .gallery-item');
             
             elementsToAnimate.forEach((element, index) => {
               // Réinitialiser les classes d'animation
@@ -1334,7 +1483,7 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
       if (activeSection && activeSection.id !== 'actualites') {
         // Appliquer une animation aléatoire au chargement initial
         const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
-        const elementsToAnimate = activeSection.querySelectorAll('.section-title, .justified-text, .career-list li, .form-label, .form-control, .btn-success, .sponsors-container, .construction-icon, .construction-text, .social-icons, .social-icon, .accordion-item, .carousel-item');
+        const elementsToAnimate = activeSection.querySelectorAll('.section-title, .justified-text, .career-list li, .form-label, .form-control, .btn-success, .sponsors-container, .construction-icon, .construction-text, .social-icons, .social-icon, .accordion-item, .carousel-item, .photo-gallery, .gallery-title, .gallery-item');
         
         elementsToAnimate.forEach((element, index) => {
           element.classList.add(randomAnimation);
@@ -1342,7 +1491,87 @@ Ses performances en club lui valent plusieurs convocations avec la sélection ma
           element.classList.add(delayClass);
         });
       }
+      
+      // Initialiser les galeries photos
+      initPhotoGalleries();
+      
+      // Ajouter les écouteurs d'événements pour les actualités
+      initNewsOverlay();
     });
+
+    // Initialiser les galeries photos
+    function initPhotoGalleries() {
+      // Remplir les galeries avec les images
+      for (const galleryName in galleryData) {
+        const gallery = document.querySelector(`.photo-gallery[data-gallery="${galleryName}"]`);
+        if (gallery) {
+          // Vider la galerie (enlever l'image par défaut)
+          gallery.innerHTML = '';
+          
+          // Ajouter seulement la première image
+          const firstImage = galleryData[galleryName].images[0];
+          const galleryItem = document.createElement('div');
+          galleryItem.className = 'gallery-item';
+          galleryItem.innerHTML = `<img src="${firstImage}" alt="${galleryData[galleryName].title}">`;
+          galleryItem.addEventListener('click', () => {
+            openGallery(galleryName);
+          });
+          gallery.appendChild(galleryItem);
+        }
+      }
+    }
+
+    // Ouvrir une galerie
+    function openGallery(galleryName) {
+      const gallery = galleryData[galleryName];
+      galleryOverlayTitle.textContent = gallery.title;
+      
+      // Vider le carrousel
+      galleryCarouselInner.innerHTML = '';
+      
+      // Remplir le carrousel avec toutes les images
+      gallery.images.forEach((image, index) => {
+        const carouselItem = document.createElement('div');
+        carouselItem.className = `carousel-item ${index === 0 ? 'active' : ''}`;
+        carouselItem.innerHTML = `<img src="${image}" class="d-block w-100" alt="${gallery.title} - Image ${index + 1}">`;
+        galleryCarouselInner.appendChild(carouselItem);
+      });
+      
+      // Afficher l'overlay
+      galleryOverlay.classList.add('active');
+    }
+
+    // Fermer la galerie
+    closeGallery.addEventListener('click', () => {
+      galleryOverlay.classList.remove('active');
+    });
+
+    // Initialiser l'overlay des actualités
+    function initNewsOverlay() {
+      // Ajouter des écouteurs d'événements aux éléments du carrousel d'actualités
+      document.querySelectorAll('.news-carousel .carousel-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const newsIndex = parseInt(item.getAttribute('data-news-index'));
+          showNewsOverlay(newsIndex);
+        });
+      });
+      
+      // Fermer l'overlay
+      closeNews.addEventListener('click', () => {
+        newsOverlay.classList.remove('active');
+      });
+    }
+
+    // Afficher l'overlay des actualités
+    function showNewsOverlay(newsIndex) {
+      const news = newsData[newsIndex];
+      newsOverlayContent.innerHTML = `
+        <img src="${news.image}" class="img-fluid mb-4" alt="${news.title}">
+        <h3 class="news-title">${news.title}</h3>
+        <p class="news-text">${news.content}</p>
+      `;
+      newsOverlay.classList.add('active');
+    }
   </script>
 </body>
 </html>
